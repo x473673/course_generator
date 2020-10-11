@@ -74,7 +74,7 @@ def uvod(word):
     cases.append("úvod do " + word.cases[1])
     cases.append("úvodu do " + word.cases[1])
     cases.append("úvodu do " + word.cases[1])
-    return Word(cases, "fem")
+    return Word(cases, "mas")
 
 def v(word1,word2):
     cases = []
