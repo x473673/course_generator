@@ -91,5 +91,5 @@ def a(word1,word2):
 
 
 random.seed()
-print(course(10))
+print(course(3)) # set number of words
 
