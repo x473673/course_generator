@@ -13,7 +13,11 @@ class Word:
         return self.cases[0]
 
 def create_adj(adj):
-    if adj[-1] == "í": return {"mas":3*[adj],"fem":3*[adj],"neu":3*[adj]}
+    if adj[-1] == "í":
+        mas = [adj, adj + "ho", adj + "m"]
+        fem = [adj, adj, adj]
+        neu = mas
+        return {"mas":mas,"fem":fem,"neu":neu}
     else:
         sub = adj[:-1]
         mas = [sub + "ý",sub + "ého",sub + "ém"]
@@ -78,8 +82,10 @@ def uvod(word):
 
 def v(word1,word2):
     cases = []
+    vve = " v "
+    if word2.cases[2][0] in ["v","š"]: vve = " ve "
     for i in range(3):
-        cases.append(word1.cases[i] + " v " + word2.cases[2])
+        cases.append(word1.cases[i] + vve + word2.cases[2])
     return Word(cases, word1.gender)
 
 def a(word1,word2):
@@ -91,5 +97,8 @@ def a(word1,word2):
 
 
 random.seed()
-print(course(3)) # set number of words
+for i in range(2000):
+	text = course(random.randint(2,4)).cases[0] # set number of words
+	words = text.split()
+	if len(words) == len(set(words)): print(text)
 
