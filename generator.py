@@ -8,7 +8,7 @@ class Word:
     def __init__(self, cases, gender):
         self.cases = cases
         self.gender = gender
-        
+
     def __str__(self):
         return self.cases[0]
 
@@ -24,7 +24,7 @@ def create_adj(adj):
         fem = [sub + "á",sub + "é",sub + "é"]
         neu = [sub + "é",sub + "ého",sub + "ém"]
         return {"mas":mas,"fem":fem,"neu":neu}
-    
+
 NOUNS = []
 ADJS = []
 with open("words.csv","r",encoding="utf8") as file:
@@ -32,7 +32,7 @@ with open("words.csv","r",encoding="utf8") as file:
     for row in reader:
         NOUNS.append(Word([row["nom"],row["gen"],row["lok"]],row["gender"]))
         ADJS.append(create_adj(row["adj"]))
-    
+
 
 def course(length):
     if length == 1: return noun()
@@ -93,12 +93,12 @@ def a(word1,word2):
     for i in range(3):
         cases.append(word1.cases[i] + " a " + word2.cases[i])
     return Word(cases, word1.gender)
-    
+
 
 
 random.seed()
-for i in range(2000):
-	text = course(random.randint(2,4)).cases[0] # set number of words
-	words = text.split()
-	if len(words) == len(set(words)): print(text)
-
+if __name__=="__main__":
+    for i in range(2000):
+    	text = course(random.randint(2,4)).cases[0] # set number of words
+    	words = text.split()
+    	if len(words) == len(set(words)): print(text)
